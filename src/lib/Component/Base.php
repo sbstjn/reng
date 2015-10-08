@@ -4,6 +4,7 @@ namespace ReleaseName\Component;
 
 class Base
 {
+    use \ReleaseName\check;
     use \ReleaseName\character;
 
     /**
@@ -18,9 +19,7 @@ class Base
      */
     public function __construct()
     {
-        if (!defined('RELEASE_NAME_DATA')) {
-            throw new \Exception('Please define constant ' . RELEASE_NAME_DATA);
-        }
+        self::check();
     }
 
     /**

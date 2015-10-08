@@ -4,6 +4,7 @@ namespace ReleaseName;
 
 class Release
 {
+    use \ReleaseName\check;
     use \ReleaseName\character;
 
     /**
@@ -22,9 +23,7 @@ class Release
      */
     public function __construct(String $name)
     {
-        if (!defined('RELEASE_NAME_DATA')) {
-            throw new \Exception('Please define constant ' . RELEASE_NAME_DATA);
-        }
+        self::check();
 
         list($adjective, $noun) = explode('-', $name);
     }
