@@ -44,4 +44,12 @@ class ReleaseTest extends \PHPUnit_Framework_TestCase
 
         return $data;
     }
+    
+    public function testConstructor()
+    {
+        $release = new \ReleaseName\Release('funny-fox');
+        
+        $this->assertEquals('funny', $release->getAdjective());
+        $this->assertEquals('fox', $release->getNoun());
+    }
 }

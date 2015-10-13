@@ -24,5 +24,4 @@ Trait character
     {
         return self::randomFor(self::randomCharacter());
     }
-
 }

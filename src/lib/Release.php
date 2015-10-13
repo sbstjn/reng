@@ -4,7 +4,6 @@ namespace ReleaseName;
 
 class Release
 {
-    use \ReleaseName\check;
     use \ReleaseName\character;
 
     /**
@@ -21,11 +20,32 @@ class Release
      * @param String $name Initialize Release object
      * @throws \Exception
      */
-    public function __construct(String $name)
+    public function __construct($name)
     {
-        self::check();
-
         list($adjective, $noun) = explode('-', $name);
+        
+        $this->adjective = new \ReleaseName\Component\Adjective($adjective);
+        $this->noun = new \ReleaseName\Component\Noun($noun);
+    }
+
+    /**
+     * Get adjective from release
+     *
+     * @return Component\Adjective
+     */
+    public function getAdjective()
+    {
+        return $this->adjective;
+    }
+
+    /**
+     * Get noun from release
+     *
+     * @return Component\Noun
+     */
+    public function getNoun()
+    {
+        return $this->noun;
     }
 
     /**
