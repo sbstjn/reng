@@ -4,8 +4,14 @@ namespace ReleaseName\Component;
 
 class Base
 {
-    use \ReleaseName\check;
     use \ReleaseName\character;
+    
+    /**
+     * Current value
+     *
+     * @var string
+     */
+    private $value;
 
     /**
      * Character pool for randomizer
@@ -15,11 +21,22 @@ class Base
     /**
      * Initialize
      *
+     * @param string $value Word
      * @throws \Exception
      */
-    public function __construct()
+    public function __construct($value)
     {
-        self::check();
+        $this->value = $value;
+    }
+    
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->value;
     }
 
     /**
