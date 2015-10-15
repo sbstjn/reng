@@ -65,8 +65,9 @@ class Base
         if (file_exists($file)) {
             $data = file_get_contents($file);
             $list = explode("\n", $data);
-
-            return strtolower($list[rand(0, count($list) - 1)]);
+            $class = get_called_class();
+            
+            return new $class(strtolower($list[rand(0, count($list) - 1)]));
         }
     }
 }
