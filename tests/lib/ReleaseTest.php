@@ -23,7 +23,7 @@ class ReleaseTest extends \PHPUnit_Framework_TestCase
             \ReleaseName\Release::randomFor($char)
         );
 
-        $release = \ReleaseName\Release::randomFor($char);
+        $release = (string)\ReleaseName\Release::randomFor($char);
         list(, $noun) = explode('-', $release);
 
         $this->assertEquals(2, count(explode('-', $release)));
