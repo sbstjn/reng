@@ -54,13 +54,24 @@ class Release
      * @param $char Character
      * @return string
      */
-    public static function randomFor($char) {
-        return implode('-',
+    public static function randomFor($char)
+    {
+        return new Release(implode('-',
             array(
                 \ReleaseName\Component\Adjective::randomFor($char),
                 \ReleaseName\Component\Noun::randomFor($char)
             )
-        );
+        ));
+    }
+
+    /**
+     * Convert Release object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getAdjective() . '-' . $this->getNoun();
     }
 
 

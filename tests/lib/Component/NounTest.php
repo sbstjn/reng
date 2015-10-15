@@ -28,7 +28,7 @@ class NounTest extends \PHPUnit_Framework_TestCase
             \ReleaseName\Component\Noun::randomFor($char)
         );
 
-        $this->assertStringStartsWith($char, \ReleaseName\Component\Noun::randomFor($char));
+        $this->assertStringStartsWith($char, (string)\ReleaseName\Component\Noun::randomFor($char));
     }
 
     public function alphabetProvider()
