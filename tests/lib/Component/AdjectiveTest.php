@@ -31,6 +31,11 @@ class AdjectiveTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsWith($char, (string)\ReleaseName\Component\Adjective::randomFor($char));
     }
 
+    public function testGetRandom()
+    {
+        $adjective = (string)\ReleaseName\Component\Adjective::random();
+    }
+
     public function alphabetProvider()
     {
         $list = \ReleaseName\Component\Adjective::CHARACTER_LIST;
@@ -43,4 +48,21 @@ class AdjectiveTest extends \PHPUnit_Framework_TestCase
         return $data;
     }
 
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Invalid first character
+     */
+    public function testInvalidFirstCharacter()
+    {
+        new \ReleaseName\Component\Adjective('4life');
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Word not in known list of words: dog
+     */
+    public function testUnknownWord()
+    {
+        new \ReleaseName\Component\Adjective('dog');
+    }
 }

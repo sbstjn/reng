@@ -19,6 +19,11 @@ class NounTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetRandom()
+    {
+        $noun = (string)\ReleaseName\Component\Noun::random();
+    }
+
     /**
      * @dataProvider alphabetProvider
      */
@@ -41,5 +46,23 @@ class NounTest extends \PHPUnit_Framework_TestCase
         }
 
         return $data;
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Invalid first character
+     */
+    public function testInvalidFirstCharacter()
+    {
+        new \ReleaseName\Component\Noun('4dogs');
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Word not in known list of words: dangerous
+     */
+    public function testUnknownWord()
+    {
+        new \ReleaseName\Component\Noun('dangerous');
     }
 }

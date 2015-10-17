@@ -27,8 +27,25 @@ class Base
     public function __construct($value)
     {
         $this->value = $value;
+        $this->validate();
     }
-    
+
+    /**
+     * Validate word against list of allowed characters and words
+     *
+     * @throws \Exception
+     */
+    private function validate()
+    {
+        if (!stristr(self::CHARACTER_LIST, $this->value[0])) {
+            throw new \Exception('Invalid first character: ' . $this->value[0]);
+        }
+
+        if (!in_array($this->value, self::listForCharacter($this->value[0]))) {
+            throw new \Exception('Word not in known list of words: ' . $this->value);
+        }
+    }
+
     /**
      * Convert object to string
      *
@@ -60,14 +77,33 @@ class Base
      */
     public static function randomFor($char)
     {
-        $file = self::getDataFolder() . '/' . $char;
-
-        if (file_exists($file)) {
-            $data = file_get_contents($file);
-            $list = explode("\n", $data);
-            $class = get_called_class();
+        $list = self::listForCharacter($char);
+        $class = get_called_class();
             
-            return new $class(strtolower($list[rand(0, count($list) - 1)]));
-        }
+        return new $class($list[rand(0, count($list) - 1)]);
+
+    }
+
+    /**
+     * Get list of available words for given character
+     *
+     * @param $char Needed character
+     * @return array
+     */
+    public static function listForCharacter($char)
+    {
+        $file = self::getDataFolder() . '/' . $char;
+        $data = strtolower(file_get_contents($file));
+        return explode("\n", $data);
+    }
+
+    /**
+     * Get random string
+     *
+     * @return mixed
+     */
+    public static function random()
+    {
+        return self::randomFor(self::randomCharacter());
     }
 }
