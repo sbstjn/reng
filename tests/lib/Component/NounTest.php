@@ -19,6 +19,11 @@ class NounTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetRandom()
+    {
+        $noun = (string)\ReleaseName\Component\Noun::random();
+    }
+
     /**
      * @dataProvider alphabetProvider
      */

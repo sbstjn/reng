@@ -31,6 +31,11 @@ class AdjectiveTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsWith($char, (string)\ReleaseName\Component\Adjective::randomFor($char));
     }
 
+    public function testGetRandom()
+    {
+        $adjective = (string)\ReleaseName\Component\Adjective::random();
+    }
+
     public function alphabetProvider()
     {
         $list = \ReleaseName\Component\Adjective::CHARACTER_LIST;

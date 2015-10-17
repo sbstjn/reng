@@ -33,6 +33,17 @@ class ReleaseTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsWith($char, $noun);
     }
 
+    public function testGetRandom()
+    {
+        $release = (string)\ReleaseName\Release::random();
+        list($adjective, $noun) = explode('-', $release);
+
+        $this->assertEquals(2, count(explode('-', $release)));
+
+        $this->assertStringMatchesFormat('%s-%s', $release);
+        $this->assertEquals($adjective[0], $noun[0]);
+    }
+
     public function alphabetProvider()
     {
         $list = \ReleaseName\Component\Base::CHARACTER_LIST;
