@@ -4,8 +4,6 @@ namespace ReleaseName\Component;
 
 class Base
 {
-    use \ReleaseName\character;
-    
     /**
      * Current value
      *
@@ -105,5 +103,16 @@ class Base
     public static function random()
     {
         return self::randomFor(self::randomCharacter());
+    }
+
+    /**
+     * Get random character
+     *
+     * @return mixed
+     */
+    public static function randomCharacter()
+    {
+        $list = self::CHARACTER_LIST;
+        return $list[rand(0, strlen($list) - 1)];
     }
 }

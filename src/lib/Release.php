@@ -4,8 +4,6 @@ namespace ReleaseName;
 
 class Release
 {
-    use \ReleaseName\character;
-
     /**
      * @var \ReleaseName\Component\Adjective
      */
@@ -101,6 +99,16 @@ class Release
     public static function random()
     {
         return self::randomFor(self::randomCharacter());
+    }
+
+    /**
+     * Get random character
+     *
+     * @return mixed
+     */
+    public static function randomCharacter()
+    {
+        return \ReleaseName\Component\Base::randomCharacter();
     }
 
     /**
