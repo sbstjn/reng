@@ -43,4 +43,21 @@ class AdjectiveTest extends \PHPUnit_Framework_TestCase
         return $data;
     }
 
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Invalid first character
+     */
+    public function testInvalidFirstCharacter()
+    {
+        new \ReleaseName\Component\Adjective('4life');
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Word not in known list of words: dog
+     */
+    public function testUnknownWord()
+    {
+        new \ReleaseName\Component\Adjective('dog');
+    }
 }

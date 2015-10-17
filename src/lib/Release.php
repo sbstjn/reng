@@ -22,10 +22,39 @@ class Release
      */
     public function __construct($name)
     {
+        self::validateReleaseFormat($name);
+
         list($adjective, $noun) = explode('-', $name);
         
         $this->adjective = new \ReleaseName\Component\Adjective($adjective);
         $this->noun = new \ReleaseName\Component\Noun($noun);
+    }
+
+    /**
+     * Validate format of release name
+     *
+     * @param $name
+     * @throws \Exception
+     */
+    public static function validateReleaseFormat($name)
+    {
+        if (!stristr($name, '-')) {
+            throw new \Exception('Release must include a hyphen');
+        }
+
+        if (strpos($name, '-') === 0) {
+            throw new \Exception('Hyphen cannot be first character');
+        }
+
+        if (strpos($name, '-') === (strlen($name) - 1)) {
+            throw new \Exception('Hyphen cannot be last character');
+        }
+
+        list($adjective, $noun) = explode('-', $name);
+
+        if ($adjective[0] != $noun[0]) {
+            throw new \Exception('Invalid combination of release name: ' . $name);
+        }
     }
 
     /**
@@ -62,6 +91,16 @@ class Release
                 \ReleaseName\Component\Noun::randomFor($char)
             )
         ));
+    }
+
+    /**
+     * Get random string
+     *
+     * @return mixed
+     */
+    public static function random()
+    {
+        return self::randomFor(self::randomCharacter());
     }
 
     /**
