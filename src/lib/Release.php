@@ -29,12 +29,12 @@ class Release
     }
 
     /**
-     * Validate format of release name
+     * Validate given release name for hyphen position
      *
      * @param $name
      * @throws \Exception
      */
-    public static function validateReleaseFormat($name)
+    private static function validateReleaseFormatForHyphen($name)
     {
         if (!stristr($name, '-')) {
             throw new \Exception('Release must include a hyphen');
@@ -47,7 +47,17 @@ class Release
         if (strpos($name, '-') === (strlen($name) - 1)) {
             throw new \Exception('Hyphen cannot be last character');
         }
+    }
 
+    /**
+     * Validate format of release name
+     *
+     * @param $name
+     * @throws \Exception
+     */
+    public static function validateReleaseFormat($name)
+    {
+        self::validateReleaseFormatForHyphen($name);
         list($adjective, $noun) = explode('-', $name);
 
         if ($adjective[0] != $noun[0]) {
