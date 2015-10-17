@@ -8,7 +8,7 @@
     <a href="https://packagist.org/packages/sbstjn/reng"><img src="https://img.shields.io/packagist/v/sbstjn/reng.svg" alt="Packagist"></a>
     <a href="https://github.com/sbstjn/reng/blob/master/LICENSE.md"><img src="https://img.shields.io/packagist/l/sbstjn/reng.svg" alt="MIT License"></a>
 </p>
-<p align="center"><sup><strong>For PHP 5.4 and above - aka. clumsy-cattle</strong></sup></p>
+<p align="center"><sup><strong>For PHP 5.3 and above - aka. handy-hyena</strong></sup></p>
 ## Install
 
 Via Composer
@@ -35,7 +35,7 @@ $ composer test
 
 ``` bash
 $ composer run
-generous-gelada
+composer run
 ```
 
 ## Contributing
